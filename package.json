@@ -1,0 +1,9 @@
+{
+  "name": "love-nest",
+  "version": "1.0.0",
+  "private": true,
+  "description": "一个可以保存照片的爱情小窝",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

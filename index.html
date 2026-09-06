@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fffaf8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <title>爱情小窝</title>
+    <link rel="stylesheet" href="/styles.css?v=2" />
+  </head>
+  <body>
+    <main id="setup-state" class="page-shell state-shell" hidden>
+      <section class="state-panel">
+        <p class="eyebrow">FIRST SETUP</p>
+        <h1>连接你们的小窝</h1>
+        <p>还需要完成云端配置，配置完成后就能在微信中从任何地方访问。</p>
+      </section>
+    </main>
+
+    <main id="auth-state" class="page-shell state-shell" hidden>
+      <section class="state-panel auth-panel">
+        <p class="eyebrow">OUR LITTLE PLACE</p>
+        <h1>爱情小窝</h1>
+        <p class="state-copy">登录你们的共享账号，打开共同的照片空间。</p>
+        <form id="login-form" class="login-form">
+          <label for="email-input">邮箱</label>
+          <input id="email-input" type="email" autocomplete="username" required placeholder="你们的共享账号邮箱" />
+          <label for="password-input">密码</label>
+          <input id="password-input" type="password" autocomplete="current-password" required placeholder="共享账号密码" />
+          <button class="upload-button" type="submit">进入小窝</button>
+          <p id="auth-message" class="form-message" role="alert"></p>
+        </form>
+      </section>
+    </main>
+
+    <main id="app-shell" class="page-shell" hidden>
+      <header class="hero">
+        <div>
+          <p class="eyebrow">OUR LITTLE PLACE</p>
+          <h1>爱情小窝</h1>
+          <p class="subtitle">把想珍藏的每个瞬间，放在这里。</p>
+        </div>
+        <div class="hero-actions">
+          <div class="heart-mark" aria-hidden="true">♡</div>
+          <button id="logout-button" class="logout-button" type="button">退出</button>
+        </div>
+      </header>
+
+      <section class="toolbar" aria-label="照片工具栏">
+        <label class="upload-button" for="photo-input">
+          <span aria-hidden="true">+</span>
+          上传照片
+        </label>
+        <input id="photo-input" type="file" accept="image/*" multiple />
+        <button id="clear-button" class="text-button" type="button" hidden>清空照片</button>
+      </section>
+
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+
+      <section id="gallery" class="gallery" aria-live="polite">
+        <div id="empty-state" class="empty-state">
+          <div class="empty-icon" aria-hidden="true">♡</div>
+          <h2>小窝还很安静</h2>
+          <p>上传一张照片，开始收藏你们的故事。</p>
+        </div>
+      </section>
+    </main>
+
+    <template id="photo-card-template">
+      <article class="photo-card">
+        <div class="photo-frame">
+          <img class="photo" alt="" />
+          <button class="delete-button" type="button" title="删除这张照片" aria-label="删除这张照片">×</button>
+        </div>
+        <div class="photo-info">
+          <time class="photo-date"></time>
+          <input class="caption-input" type="text" maxlength="80" placeholder="写下这一刻的心情..." aria-label="照片说明" />
+        </div>
+      </article>
+    </template>
+
+    <script>
+      window.SUPABASE_CONFIG = {
+        url: 'https://xwbqtqkftouhdrsypiex.supabase.co',
+        anonKey: 'sb_publishable_709xf2E2iMicL22GknZ0tQ_-foECAOx'
+      };
+    </script>
+    <script src="/app.js?v=5"></script>
+  </body>
+</html>
