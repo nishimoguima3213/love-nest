@@ -134,7 +134,9 @@ async function getSignedUrl(storagePath) {
     body: JSON.stringify({ expiresIn: 3600 })
   });
   const signedPath = data.signedURL || data.signedUrl;
-  return signedPath.startsWith('http') ? signedPath : `${supabaseUrl}${signedPath}`;
+  if (signedPath.startsWith('http')) return signedPath;
+  if (signedPath.startsWith('/storage/v1/')) return `${supabaseUrl}${signedPath}`;
+  return `${supabaseUrl}/storage/v1${signedPath}`;
 }
 
 async function getPhotos() {
