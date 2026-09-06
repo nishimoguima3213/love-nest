@@ -305,6 +305,26 @@ h1 {
   object-fit: cover;
 }
 
+.download-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(52, 46, 45, 0.7);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.download-button:hover {
+  background: var(--accent-dark);
+}
+
 .delete-button {
   position: absolute;
   top: 10px;
@@ -423,6 +443,7 @@ h1 {
 
 @media (hover: none) {
   .upload-button:hover,
+  .download-button:hover,
   .delete-button:hover,
   .text-button:hover {
     background: initial;
@@ -431,6 +452,11 @@ h1 {
 
   .upload-button:hover {
     background: var(--accent);
+    color: #fff;
+  }
+
+  .download-button:hover {
+    background: rgba(52, 46, 45, 0.7);
     color: #fff;
   }
 

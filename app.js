@@ -127,6 +127,10 @@ function encodedPath(storagePath) {
   return storagePath.split('/').map(encodeURIComponent).join('/');
 }
 
+function fileName(storagePath) {
+  return storagePath.split('/').pop() || 'love-photo.jpg';
+}
+
 async function getSignedUrl(storagePath) {
   const data = await request(`${supabaseUrl}/storage/v1/object/sign/photos/${encodedPath(storagePath)}`, {
     method: 'POST',
@@ -233,12 +237,17 @@ function renderPhotos(photos) {
   photos.forEach((photo) => {
     const card = cardTemplate.content.firstElementChild.cloneNode(true);
     const image = card.querySelector('.photo');
+    const downloadButton = card.querySelector('.download-button');
     const date = card.querySelector('.photo-date');
     const captionInput = card.querySelector('.caption-input');
     const deleteButton = card.querySelector('.delete-button');
 
     image.src = photo.imageUrl;
     image.alt = photo.caption || '爱情小窝里的照片';
+    const downloadUrl = new URL(photo.imageUrl);
+    downloadUrl.searchParams.set('download', fileName(photo.storagePath));
+    downloadButton.href = downloadUrl.toString();
+    downloadButton.download = fileName(photo.storagePath);
     date.dateTime = new Date(photo.createdAt).toISOString();
     date.textContent = formatDate(photo.createdAt);
     captionInput.value = photo.caption;
